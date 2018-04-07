@@ -1,0 +1,172 @@
+#include<iostream>
+using namespace std;
+
+struct node
+{
+	int exp;              //指数
+	float coef;           //系数
+	struct node *next;    //指针域
+};
+struct node* Create(float coef1, int exp1)
+{
+	node* n = new node;
+	n->exp = exp1;
+	n->coef = coef1;
+	n->next = NULL;
+	return n;
+};
+int main() {
+	node* head1 = NULL, *la = NULL;
+	cout << "输入第一个多项式"<<endl;                                                    //cin第一个多项式
+	while (1)
+	{
+		int ex;
+		float coe;
+		node* p = new node;
+		cout << "输入项的系数(输入0表示结束多项式输入)：";
+		cin >> coe;
+		if (coe == 0)
+			break;
+		else
+		{
+			cout << "输入项的指数:";
+			cin >> ex;
+		}
+		p = Create(coe, ex);
+		if (head1 == NULL)
+		{
+			head1 = p;
+			la = head1;
+		}
+		else
+		{
+			la->next = p;
+			la = la->next;
+		}
+	}
+	la = head1;
+	cout << "你输入的多项式为：";                                                         //cout第一个多项式
+	while (1)
+	{
+		
+		cout << la->coef << "x^" << la->exp;
+		if (la->next == NULL)
+		{
+			break;
+		}
+		else
+		{
+			cout << "+";
+			la = la->next;
+		}
+	}
+	la = head1;
+	cout << endl<< "**************" << endl;
+	node* head2 = NULL, *lb = NULL;
+	cout << "输入第二个多项式" << endl;                                                      //cin第2个多项式
+	while (1)
+	{
+		int ex2;
+		float coe2;
+		node* p2 = new node;
+		cout << "输入项的系数(输入0表示结束多项式输入)：";
+		cin >> coe2;
+		if (coe2 == 0)
+			break;
+		else
+		{
+			cout << "输入项的指数:";
+			cin >> ex2;
+		}
+		p2 = Create(coe2, ex2);
+		if (head2 == NULL)
+		{
+			head2 = p2;
+			lb = head2;
+		}
+		else
+		{
+			lb->next = p2;
+			lb = lb->next;
+		}
+	}
+	lb = head2;
+	cout << "你输入的多项式为：";                                                         //cout第2个多项式
+	while (1)
+	{
+
+		cout << lb->coef << "x^" << lb->exp;
+		if (lb->next == NULL)
+		{
+			break;
+		}
+		else
+		{
+			cout << "+";
+			lb = lb->next;
+		}
+	}
+	lb = head2;
+	cout <<endl<< "**************" << endl;
+	//比较两个多项式   相加；
+	node *head3 = NULL, *lc = NULL;
+	while (la != NULL)
+	{
+		node* p3 = new node;
+		p3->next = NULL;
+		if (la->exp < lb->exp)
+		{
+			p3->exp = la->exp;
+			p3->coef = la->coef;
+			la = la->next;
+		}
+		else if (la->exp > lb->exp)
+		{
+			p3->exp = lb->exp;
+			p3->coef = lb->coef;
+			lb = lb->next;
+		}
+		else
+		{
+			p3->exp = la->exp;
+			p3->coef = la->coef + lb->coef;
+			la = la->next;
+			lb = lb->next;
+		}
+		if (head3 == NULL)
+		{
+			head3 = p3;
+			lc = head3;
+		}
+		else
+		{
+			lc->next = p3;
+			lc = lc->next;
+		}
+	}
+	while (lb->next != NULL)
+	{
+		lc->next = lb;
+		lc = lc->next;
+		lb = lb->next;
+	}
+	lc = head3;
+	cout << "多项式相加的结果：" << endl;
+	while (1)
+	{
+
+		cout << lc->coef << "x^" << lc->exp;
+		if (lc->next == NULL)
+		{
+			break;
+		}
+		else
+		{
+			cout << "+";
+			lc = lc->next;
+		}
+	}
+
+	system("pause");
+	return 0;
+}
