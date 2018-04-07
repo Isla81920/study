@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+struct node  //定义结构体 
+{
+	int data;
+	node* next;  //指向下一个结点 
+};
+
+struct node* Create()   // 
+{
+ node* n = new node;
+ int data = 0;
+	n->next = NULL;
+	return n;
+}
+
+int main()
+{
+	 node *head = NULL, *p = NULL;
+	int n;
+	cin >> n;
+	while (n!=-1)
+	{
+		
+		node* pre;
+		pre = Create();          //新建结点 
+		pre->data = n;
+		
+		if (head == NULL)                     //如果头结点为空,则把当前新结点当成头结点 
+		{
+			head = pre;
+			p = head;                        //当前指向为头结点 
+		}
+		else                               //如果头结点不为空 
+		{
+			p->next = pre;             //把上一个结点的next指向新建结点 
+			p = p->next;                     //当前指向为新结点 
+		}
+		cin >> n;
+	}
+	p = head;                                //重新指向头结点,以便输出 
+	while (1)
+	{
+		cout << p->data<< endl;                 //输出数据字符串 
+		if (p->next == NULL) break;           //如果当前结点没有指向下一个结点,则退出 
+		p = p->next;                         //当前指向下一个结点 
+	}
+	system("pause");
+	return 0;
+}
