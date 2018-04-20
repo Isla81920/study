@@ -1,0 +1,53 @@
+#include<iostream>
+using namespace std;
+
+class sqstack
+{
+protected:
+	int maxsize;
+	
+	int* elems;
+public:
+	int count;
+	void Create(int size)
+	{
+		maxsize=size;
+		elems=new int[maxsize];
+		count=0;
+	}
+	void push(int n)
+	{
+		elems[count]=n;
+		count=count+1;
+	}
+	void pop()
+	{
+		cout<<elems[count-1];
+		count--;
+	}
+};
+
+int main()
+{
+	int x;
+	int c;
+	sqstack a;
+	cout<<"maxsize:";
+	cin>>x;
+	a.Create(x);
+
+	cout<<"cout a lot of abcd(-1)"<<endl;
+	cin>>c;
+	while(c!=-1)
+	{
+		a.push(c);
+		cin>>c;
+	}
+	while(a.count>0)
+	{
+		a.pop();
+		cout<<endl;
+	}
+
+	return 0;
+}
