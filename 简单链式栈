@@ -1,0 +1,57 @@
+#include<iostream>
+using namespace std;
+struct node
+{
+	int data;
+	node* next;
+};
+class Linkstack
+{
+private:
+	node* top;
+public:
+	Linkstack()
+	{
+		top=NULL;
+	}
+	void creat(int n)
+	{
+		node* p=new node;
+		p->data=n;
+		p->next=top;
+		top=p;
+	}
+	void pop()
+	{
+		cout<<top->data;
+		top=top->next;
+	}
+	bool empty()
+	{
+		if(top==NULL)
+			return true;
+		else
+			return false;
+	}
+};
+
+int main()
+{
+	int n;
+	Linkstack a;
+	Linkstack();
+	cout<<"cin something:"<<endl;
+	cin>>n;
+	while(n!=-1)
+	{
+		a.creat(n);
+		cin>>n;
+	}
+	cout<<"cout the thing:";
+	while(!a.empty())
+	{
+		a.pop();
+	}
+	system("pause");
+	return 0;
+}
