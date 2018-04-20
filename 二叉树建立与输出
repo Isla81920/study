@@ -1,0 +1,54 @@
+#include<iostream>
+using namespace std;
+struct node
+{
+	int data;
+	node* left,*right;
+}
+
+void createbitree(int n,node* &p)
+{
+	if(p==NULL)
+	{
+		p=new node;
+		p->data=n;
+		p->left=NULL;
+		p->right=NULL;
+	}
+	else if(n<p->data)
+	{
+		createbitree(n,p->left);
+	}
+	else
+		createbitree(n,p->right);
+}
+
+void printtree(node* &pl)
+{
+	if(pl!=NULL)                               //中序输出     （从小到大）     
+	{	
+		printtree(pl->left);
+		cout<<pl->data<<endl;
+		printtree(pl->right);
+	}
+}
+/*	先序输出							从大到小输出				后序输出
+	cout<<pl->data<<endl;				printtree(pl->right);		printtree(pl->left);
+	printtree(pl->left);				cout<<pl->data<<endl;		printtree(pl->right);
+	printtree(pl->right);				printtree(pl->left);		cout<<pl->data<<endl;
+*/
+int main()
+{
+	node *root;
+	int x;
+	root=NULL;
+	cout<<"x=";
+	cin>>x;
+	while(x>=0)
+	{
+		createbitree(x,root);
+		cin>>x;
+	}
+	printtree(root);
+	return 0;
+}
