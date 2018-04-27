@@ -1,0 +1,70 @@
+#include<iostream>
+using namespace std;
+struct arcnode
+{
+	int adjvex;
+	arcnode *next;
+};
+struct vnode{
+	int vertex;
+	arcnode *link;
+	int kind;
+};
+struct adjgraph
+{
+	vnode adjlist[20];
+	int vexnum,arcnum;
+	
+};
+
+adjgraph creat()
+{
+arcnode *p;
+int i,s,d;
+adjgraph adjg;
+cout<<"cout dingdianshu he bianshu";
+cin>>s>>d;
+adjg.vexnum=s;
+adjg.arcnum=d;
+for(i=0;i<adjg.vexnum;i++)
+{	
+	cout<<"dingdianxinxi";
+	cin>>adjg.adjlist[i].vertex;
+	adjg.adjlist[i].link=NULL;
+	adjg.adjlist[i].kind=1;
+}
+for(i=0;i<adjg.arcnum;i++)
+{
+	cout<<"qidianbianhao  zhongdian";
+	cin>>s>>d;
+}
+s--;
+d--;
+p=new(arcnode);
+p->adjvex=d;
+p->next=adjg.adjlist[s].link;
+adjg.adjlist[s].link=p;
+return adjg;
+};
+
+void dfs(adjgraph adjg,int v)
+{
+	arcnode *p;
+	
+	cout<<adjg.adjlist[v].vertex;
+	adjg.adjlist[v].kind=0;
+	p=adjg.adjlist[v].link;
+	while(p!=NULL)
+	{
+		if(adjg.adjlist[v].kind==0)
+			dfs(adjg,(p->adjvex));
+		p=p->next;
+	}
+};
+
+int main(){
+creat();
+dfs(adjg,0);
+return 0;
+
+}
