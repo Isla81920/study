@@ -58,7 +58,7 @@ void dfs(adjgraph &adjg,int v)
 	{
 		if(adjg.adjlist[p->adjvex].kind==1)                       //交点挂了    
 			dfs(adjg,(p->adjvex));                               //引用后解决&
-	
+		p=p->next;
 	}
 };
 
